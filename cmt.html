@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Content Management Tool</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- Your content management interface here -->
+    <div id="content">
+        <!-- Display content here -->
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+// Define API endpoints for managing content
+app.get('/content/:id', (req, res) => {
+    // Retrieve content by ID and send it as JSON
+});
+
+app.post('/content', (req, res) => {
+    // Create new content
+});
+
+app.put('/content/:id', (req, res) => {
+    // Update existing content by ID
+});
+
+app.delete('/content/:id', (req, res) => {
+    // Delete content by ID
+});
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/content_management', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const contentSchema = new mongoose.Schema({
+    title: String,
+    body: String,
+});
+
+const Content = mongoose.model('Content', contentSchema);
+
+module.exports = Content;
+// Example using Fetch API to retrieve content
+fetch('/content/1')
+    .then(response => response.json())
+    .then(data => {
+        // Handle the retrieved content
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
